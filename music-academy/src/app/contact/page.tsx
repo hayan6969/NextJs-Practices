@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import { useRef } from "react";
 import { useForm } from "react-hook-form";
 import { BackgroundBeams } from "@/components/ui/background-beams";
 import { Input } from "@/components/ui/input";
@@ -8,13 +7,17 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 function page() {
-    const onSubmit = (data:object) => {
+    const onSubmit = (data:any) => {
+      const formData =new FormData()
+
+        formData.append("name",data.name)
+        formData.append("message",data.message)
         fetch("https://formsubmit.co/hayankhanmehsood@gmail.com",{
             method:"POST",
-            body:JSON.stringify(data)
+            body:formData
         })
     }
-    const formRef = useRef<HTMLFormElement>(null)
+   
     const {register,handleSubmit} = useForm();
   return (
     <>
