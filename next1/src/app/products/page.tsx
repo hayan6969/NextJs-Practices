@@ -1,0 +1,14 @@
+
+
+function page() {
+  return (
+    <div className="flex justify-center items-center flex-col">
+    <h1>Product list</h1>
+    <h2>Product 1</h2>
+    <h2>Product 2</h2>
+    <h2>Product 3</h2>
+    </div>
+  )
+}
+
+export default page
