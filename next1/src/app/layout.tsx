@@ -16,7 +16,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+       <div className="flex flex-col justify-between h-screen items-center 
+       ">
+       <header className="w-full text-center" style={{backgroundColor:'lightblue',padding:'1rem'}}>
+          <p>Header</p>
+        </header>
+        {children}
+
+        <footer className="w-full text-center" style={{backgroundColor:'lightblue',padding:'1rem'}}>
+          <p>Footer</p>
+        </footer>
+       </div>
+        
+        </body>
     </html>
   );
 }
