@@ -1,15 +1,21 @@
+import React from "react";
+import Login from "./@login/page";
+
 export default function DashboardLayout({
     children,
     users,
     revenue,
-    notifications
+    notifications,
+    login
   }: Readonly<{
     children: React.ReactNode;
     users:React.ReactNode;
     revenue:React.ReactNode;
     notifications:React.ReactNode;
+    login:React.ReactNode;
   }>){
-    return (
+    const isLoggedIn=false;
+    return isLoggedIn ? (
         <>
         <div>{children}</div>
         <div className="flex ">
@@ -23,5 +29,8 @@ export default function DashboardLayout({
             </div>
         </div>
         </>
+    ):
+    (
+        login
     )
   }
