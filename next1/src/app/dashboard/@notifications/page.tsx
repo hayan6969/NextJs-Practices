@@ -1,9 +1,13 @@
 import Card from "@/app/components/card"
+import Link from "next/link"
 
 
 function Notifications() {
   return (
-    <Card>Notifications</Card>
+    <Card>
+        <div>Notifications</div>
+        <Link href={'/dashboard/archived'}>Archived</Link>
+    </Card>
   )
 }
 
