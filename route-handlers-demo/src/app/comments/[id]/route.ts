@@ -1,5 +1,6 @@
 import { comment, Parser } from 'postcss'
 import {comments} from '../data'
+import {redirect} from "next/navigation"
 
 
 //creating interface for params
@@ -9,7 +10,11 @@ interface Params{
 
 
 export async function GET(_request:Request, {params}: {params:Params}){
-const comment=comments.find(comment=>comment.id===parseInt(params.id))
+if(parseInt(params.id)>comments.length){
+    redirect('/comments')
+}
+
+    const comment=comments.find(comment=>comment.id===parseInt(params.id))
 
 return Response.json(comment)
 }
