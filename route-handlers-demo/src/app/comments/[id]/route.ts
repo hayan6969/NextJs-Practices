@@ -1,4 +1,3 @@
-import { comment, Parser } from 'postcss'
 import {comments} from '../data'
 import {redirect} from "next/navigation"
 
