@@ -4,7 +4,7 @@ import { AdminOrder } from "@/components/component/admin-order"
 function page() {
   return (
     <div>
-        {/* <AdminOrder /> */}
+        
         <AdminDash2 />
     </div>
   )
