@@ -9,6 +9,7 @@ type Users ={
 
 
 async function  page() {
+    await new Promise((resolve)=>setTimeout(resolve,3000))
     const response = await fetch('https://jsonplaceholder.typicode.com/users')
     const users =await response.json()
     console.log(users)

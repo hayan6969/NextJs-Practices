@@ -1,0 +1,22 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+            "price": 109.95,
+            "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday"
+        },
+        {
+            "id": 2,
+            "title": "Mens Casual Premium Slim Fit T-Shirts",
+            "price": 22.3,
+            "description": "Slim-fitting style, short sleeves, and designed with a crew neck."
+        },
+        {
+            "id": 3,
+            "title": "Mens Cotton Jacket",
+            "price": 55.99,
+            "description": "Lightweight cotton jacket perfect for layering in all seasons."
+        }
+    ]
+}
