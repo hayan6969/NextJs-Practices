@@ -9,9 +9,12 @@ type Products ={
 
 
 async function page() {
-   
+ 
+    
     const response = await fetch ('http://localhost:3001/products',{
-        cache:'no-store',
+        next:{
+            revalidate:10, // fetches after 10 secs
+        }
     })
     const products = await response.json()
 
