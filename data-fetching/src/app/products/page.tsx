@@ -16,7 +16,7 @@ async function page() {
             revalidate:10, // fetches after 10 secs
         }
     })
-    const products = await response.json()//
+    const products = await response.json()
 
   return (
     <>
