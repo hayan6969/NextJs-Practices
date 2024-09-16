@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import {Inter} from "next/font/google"
+import { Toaster } from "@/components/ui/toaster"
 import "./globals.css";
 import { ClerkProvider, SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
 
@@ -38,6 +39,7 @@ export default function RootLayout({
         className={`${inter.className} bg-dark-2`}
       >
         {children}
+        <Toaster />
       </body>
     </html>
     </ClerkProvider>
