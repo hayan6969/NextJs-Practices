@@ -20,6 +20,9 @@ const config: Config = {
 			blue:{
 				1:'#0e78f9'
 			},
+			sky:{
+				1:'#c9ddff'
+			},
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
