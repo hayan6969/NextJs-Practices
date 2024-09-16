@@ -5,14 +5,14 @@ type prop={
     img: string,
     title: string,
     description: string,
-    handleClick: ()=>{},
+    handleClick: ()=>(void),
     className: string
 }
 
 function HomeCard({ img, title, description, handleClick, className }:prop) {
   return (
     <div
-      onClick={() => {}}
+      onClick={handleClick}
       className={` ${className} px-4 py-6 flex flex-col justify-between w-full xl:max-w-[270px] min-h-[260px] rounded-[14px] cursor pointer`}
     >
       <div className="flex justify-center items-center glassmorphism size-12 rounded-[10px]">

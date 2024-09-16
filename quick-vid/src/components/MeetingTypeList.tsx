@@ -20,7 +20,7 @@ className="bg-orange-400"
 img="/icons/schedule.svg"
 title="Schedule Meeting"
 description="Plan your meeting"
-handleClick={() => {setMeetingState('isScheduleMeeting')}}
+handleClick={() => setMeetingState('isScheduleMeeting')}
 className="bg-blue-1"
 />
 <HomeCard
@@ -31,13 +31,15 @@ handleClick={() => {router.push('/recordings')}}
 className="bg-purple-400"
 />
 <HomeCard
-img="/icons/upcoming.svg"
-title="Upcoming Meetings"
-description="View upcoming meetings"
+img="/icons/join-meeting.svg"
+title="Join Meeting"
+description="Via invitation link"
 handleClick={() => {}}
 className="bg-yellow-500"
 
 />
+
+
     </section>
   )
 }
