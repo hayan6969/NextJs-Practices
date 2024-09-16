@@ -9,6 +9,9 @@ const config: Config = {
   ],
   theme: {
   	extend: {
+		backgroundImage:{
+			hero:"url('/images/hero-background.png')",
+		},
   		colors: {
 			dark:{
 1: '#1c1f2e',
