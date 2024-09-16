@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+import MobileNav from './MobileNav'
 
 const Navbar = () => {
   return (
@@ -17,7 +18,7 @@ className='max-sm:size-10'
 </Link>
 <div className='flex-between gap-5'>
 {/* Clerk user management */}
-Mobile Nav
+<MobileNav />
 </div>
     </nav>
   )
