@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import {Inter} from "next/font/google"
 import { Toaster } from "@/components/ui/toaster"
 import "./globals.css";
+import '@stream-io/video-react-sdk/dist/css/styles.css'
 import { ClerkProvider, SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
 
 
