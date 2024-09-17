@@ -3,9 +3,12 @@ import { cn } from "@/lib/utils";
 import {
   Call,
   CallControls,
+  CallingState,
   CallParticipantsList,
+  CallStatsButton,
   PaginatedGridLayout,
   SpeakerLayout,
+  useCallStateHooks,
 } from "@stream-io/video-react-sdk";
 import React, { useState } from "react";
 import {
@@ -16,13 +19,24 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { LayoutList } from "lucide-react";
+import { LayoutList, Loader, Users } from "lucide-react";
+import { Button } from "./ui/button";
+import { useSearchParams } from "next/navigation";
+import PersonalRoom from "@/app/(root)/(home)/personal-room/page";
+import EndCallButton from "./EndCallButton";
 
 type CallLayoutType = "speaker-left" | "speaker-right" | "grid";
 
 function MeetingRoom() {
+  
+  const {useCallCallingState} = useCallStateHooks()
+  const callingState= useCallCallingState()
+  const searchParams= useSearchParams()
+  const isPersonalRoom= !!searchParams.get('personal') // if personal room is true, then it is a personal room, double !! is used for the boolean conversion from truthy to boolean true and vice versa
   const [layout, setLayout] = useState<CallLayoutType>("speaker-left");
-  const [showParticipants, setShowParticipants] = useState(true);
+  const [showParticipants, setShowParticipants] = useState(false);
+
+if(callingState != CallingState.JOINED) return <Loader/>
 
   const CallLayout = () => {
     switch (layout) {
@@ -43,8 +57,8 @@ function MeetingRoom() {
           <CallLayout />
         </div>
         <div
-          className={cn("h-[calc(100vh-80px)] hidden ml-2", {
-            "show-block": showParticipants,
+          className={cn("h-[calc(100vh-80px)]  ml-2", {
+            "hidden": !showParticipants,
           })}
         >
           <CallParticipantsList
@@ -54,7 +68,7 @@ function MeetingRoom() {
           />
         </div>
       </div>
-      <div className="fixed bottom-0 flex w-full otems-center justify-center gap-5 ">
+      <div className="fixed flex-wrap bottom-0 flex w-full otems-center justify-center gap-5 ">
         <CallControls />
 
         <DropdownMenu>
@@ -83,6 +97,15 @@ function MeetingRoom() {
            
           </DropdownMenuContent>
         </DropdownMenu>
+        <CallStatsButton  />
+        <button onClick={()=>{setShowParticipants((prev)=>!prev)}}>
+          <div className="cursor-pointer rounded-2xl bg-[#19232d] px-4 py-2 hover:bg-[#4c535b]">
+<Users size={20} className="text-white"/>
+          </div>
+        </button>
+        {
+          !isPersonalRoom && <EndCallButton/>
+        }
       </div>
     </section>
   );
