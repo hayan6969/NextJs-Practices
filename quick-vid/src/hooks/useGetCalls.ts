@@ -15,12 +15,23 @@ export const useGetCalls = () => {
       try {
         const { calls } = await client.queryCalls({
           sort: [{ field: "starts_at", direction: -1 }], //sorting by the starting dates
-          filter_conditions: [
-            {
-              starts_at: { $exists: true },
-            },
-          ],
+          filter_conditions:{
+                    starts_at :{
+                        $exists:true
+                    },
+                    $or:[
+                        
+                            {
+                                created_by_user_id:user.id
+                            },
+                            {
+                                members:{$in:[user.id]}
+                            }
+                          
+                    ]
+          },
         });
+        setcalls(calls);
       } catch (error) {
         console.log(error);
       } finally {
@@ -29,4 +40,11 @@ export const useGetCalls = () => {
     };
     loadCalls();
   }, [client, user?.id]);
+
+  return {
+    endedCalls,
+    upcomingCalls,
+    recordings:calls
+,
+    isLoading,}
 };
