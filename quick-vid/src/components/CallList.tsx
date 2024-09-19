@@ -1,6 +1,9 @@
 import React from 'react'
+type props ={
+    type: 'upcoming' | 'ended' | 'recordings'
+}
 
-function CallList() {
+function CallList({type}:props) {
   return (
     <div>CallList</div>
   )
