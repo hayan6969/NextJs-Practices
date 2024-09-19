@@ -5,6 +5,7 @@ import { Call } from '@stream-io/video-react-sdk'
 import { Heading1 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
+import MeetingCard from './MeetingCard'
 type props ={
     type: 'upcoming' | 'ended' | 'recordings'
 }
@@ -48,11 +49,12 @@ const noCallsMessage = getNoCallsMessage()
     return (
     <div className='grid grid-cols-1 gap-5 xl:grid-cols-2'>
         {
-            calls && calls.length > 0 ? calls.map((meeting:Call | CallRecording)=>{
-                
-            }) : ()
-}
-
+            calls && calls.length > 0 ? calls.map((meeting: Call | CallRecording) => (
+                <MeetingCard  />
+            )) : (
+                <h1>{noCallsMessage}</h1>
+            )
+        }
     </div>
   )
 }
