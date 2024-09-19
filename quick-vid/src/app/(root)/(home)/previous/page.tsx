@@ -1,3 +1,4 @@
+import CallList from '@/components/CallList'
 import React from 'react'
 
 function Previous() {
@@ -7,6 +8,7 @@ function Previous() {
  Previous
 
 </h1>
+<CallList type='ended'/>
     </section>
   )
 }
