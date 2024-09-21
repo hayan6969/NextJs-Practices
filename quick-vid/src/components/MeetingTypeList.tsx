@@ -10,6 +10,7 @@ import ReactDatePicker from 'react-datepicker'
 
 import { Call, useStreamVideoClient } from '@stream-io/video-react-sdk'
 import { Textarea } from './ui/textarea'
+import { Input } from './ui/input'
 
 function MeetingTypeList() {
   const {user} = useUser()
@@ -181,7 +182,16 @@ className="text-center"
 buttonText= "Join Meeting"
 handleClick={()=>{router.push(values.link)}}
 
-/>
+>
+  <Input
+  placeholder='Meeting Link'
+  className='border-none bg-slate-700 focus-visible:ring-0 focus-visible:ring-offset-0'
+  onChange={(e)=>{setValues({
+    ...values,
+    link:e.target.value
+  })} } 
+  />
+</MeetingModal>
     
     </section>
   )
