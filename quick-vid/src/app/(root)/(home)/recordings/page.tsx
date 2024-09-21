@@ -5,10 +5,10 @@ function Recordings() {
   return (
     <section className='flex size-full flex-col gap-10 text-white'>
 <h1 className='text-3xl font-bold'>
-  Recordings
+  Recordings coming soon...
 
 </h1>
-<CallList type='recordings' />
+{/* <CallList type='recordings' /> */}
     </section>
   )
 }

@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { LayoutList, Loader, Users } from "lucide-react";
 import { Button } from "./ui/button";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import PersonalRoom from "@/app/(root)/(home)/personal-room/page";
 import EndCallButton from "./EndCallButton";
 
@@ -35,7 +35,7 @@ function MeetingRoom() {
   const isPersonalRoom= !!searchParams.get('personal') // if personal room is true, then it is a personal room, double !! is used for the boolean conversion from truthy to boolean true and vice versa
   const [layout, setLayout] = useState<CallLayoutType>("speaker-left");
   const [showParticipants, setShowParticipants] = useState(false);
-
+  const router =useRouter()
 if(callingState != CallingState.JOINED) return <Loader/>
 
   const CallLayout = () => {
@@ -54,7 +54,7 @@ if(callingState != CallingState.JOINED) return <Loader/>
     <section className="relative h-screen w-full overflow-hidden pt-4 text-white">
       <div className="relative flex size-full items-center justify-center">
         <div className="flex size-full max-w-[1000px] items-center">
-          <CallLayout />
+          <CallLayout  />
         </div>
         <div
           className={cn("h-[calc(100vh-80px)]  ml-2", {
@@ -69,7 +69,9 @@ if(callingState != CallingState.JOINED) return <Loader/>
         </div>
       </div>
       <div className="fixed flex-wrap bottom-0 flex w-full otems-center justify-center gap-5 ">
-        <CallControls />
+        <CallControls onLeave={(()=>{
+            router.push('/')
+          })} />
 
         <DropdownMenu>
 

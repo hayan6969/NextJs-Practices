@@ -53,8 +53,12 @@ function CallList({type}:props) {
             const callData=await Promise.all(callRecordings.map((meeting)=>
                 meeting.queryRecordings()
             ))
-            const recordings=callData.filter(call=> call.recordings.length>0).flatMap(call=>call.recordings)
+            
+            const recordings=callData
+            .filter(call=> call.recordings.length>0)
+            .flatMap(call=>call.recordings)
             setRecordings(recordings)
+            
         }
        
 
@@ -78,7 +82,7 @@ if(isLoading) return <Loader />
                     ? '/icons/upcoming.svg'
                     : '/icons/recordings.svg'
                 }
-                title={(meeting as Call).state?.custom.description.substring(0,20) || 'No Description' || meeting.filename.substring(0,20)}
+                title={(meeting as Call).state?.custom?.description?.substring(0,20) || 'Personal Meeting' || meeting.filename?.substring(0,20)}
                 date={
                     (meeting as Call).state?.startsAt?.toLocaleString() || (meeting as CallRecording).start_time.toLocaleString()
                 }
@@ -93,7 +97,7 @@ if(isLoading) return <Loader />
                 }
                 handleClick={
                     type==='recordings'
-                    ? ( )=>router.push(`${meeting.url}`) :  ()=>router.push (`/meeting/${meeting.id}`)
+                    ? ()=>router.push(`${meeting.url}`) :  ()=>router.push (`/meeting/${meeting.id}`)
                 }
                 link={
                     type==='recordings'

@@ -172,6 +172,17 @@ buttonText= "Start Meeting"
 handleClick={createMeeting}
 
 />
+
+<MeetingModal
+isOpen={meetingState==='isJoiningMeeting'}
+onClose={()=>setMeetingState(undefined)}
+title="Type the link here"
+className="text-center"
+buttonText= "Join Meeting"
+handleClick={()=>{router.push(values.link)}}
+
+/>
+    
     </section>
   )
 }
