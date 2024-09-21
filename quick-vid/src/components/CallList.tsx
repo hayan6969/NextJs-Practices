@@ -6,7 +6,7 @@ import { Call } from '@stream-io/video-react-sdk'
 import { Heading1 } from 'lucide-react'
 import Loader from './Loader'
 import { useRouter } from 'next/navigation'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import MeetingCard from './MeetingCard'
 type props ={
     type: 'upcoming' | 'ended' | 'recordings'
@@ -46,6 +46,22 @@ function CallList({type}:props) {
 
         
     }
+
+    useEffect(()=>{
+
+        const fetchRecordings=async()=>{
+            const callData=await Promise.all(callRecordings.map((meeting)=>
+                meeting.queryRecordings()
+            ))
+            const recordings=callData.filter(call=> call.recordings.length>0).flatMap(call=>call.recordings)
+            setRecordings(recordings)
+        }
+       
+
+        if(type==='recordings')  fetchRecordings()
+    
+    },[type,callRecordings])
+
 const calls=getCalls()
 const noCallsMessage = getNoCallsMessage()
 if(isLoading) return <Loader />
@@ -62,9 +78,9 @@ if(isLoading) return <Loader />
                     ? '/icons/upcoming.svg'
                     : '/icons/recordings.svg'
                 }
-                title={(meeting as Call).state.custom.description.substring(0,20) || 'No Description'}
+                title={(meeting as Call).state?.custom.description.substring(0,20) || 'No Description' || meeting.filename.substring(0,20)}
                 date={
-                    (meeting as Call).state.startsAt?.toLocaleString() || (meeting as CallRecording).start_time.toLocaleString()
+                    (meeting as Call).state?.startsAt?.toLocaleString() || (meeting as CallRecording).start_time.toLocaleString()
                 }
                 isPreviousMeeting={
                     type==='ended'
